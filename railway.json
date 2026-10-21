@@ -1,0 +1,13 @@
+{
+    "$schema": "https://railway.com/railway.schema.json",
+    "build": {
+        "buildCommand": "npm run build"
+    },
+    "deploy": {
+        "preDeployCommand": ["npm run db:deploy"],
+        "startCommand": "node dist/index.js",
+        "healthCheckPath": "/",
+        "restartPolicyType": "ON_FAILURE" 
+    }
+
+}
