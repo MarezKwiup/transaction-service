@@ -31,6 +31,17 @@ function toApi(t: Transaction) {
         transaction_id: t.transactionId,
         source_account: t.sourceAccount,
         destination_account: t.destinationAccount,
-        
-    }
+        amount: t.amount.toNumber(),
+        currency: t.currency,
+        status: t.status,
+        created_at: t.createdAt.toISOString(),
+        processed_at: t.processedAt ? t.processedAt.toISOString() : null,
+    };
+}
+
+export async function getTransaction(transactionId: string) {
+    const row = await prisma.transaction.findUnique({
+        where: { transactionId }
+    })
+    return row ? toApi(row) : null;
 }
