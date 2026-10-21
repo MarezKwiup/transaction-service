@@ -137,7 +137,7 @@ postgresql://USER:PASSWORD@HOST/neondb?sslmode=require&connect_timeout=30
 The test scripts cover the success criteria. They run against any deployment through `BASE_URL`, print `PASS`/`FAIL`, and exit non-zero on failure.
  
 ```bash
-export BASE_URL=https://YOUR-SERVICE.onrender.com   # or http://localhost:3000
+export BASE_URL=https://transaction-service-u9fq.onrender.com   # or http://localhost:3000
  
 npm run test:single       # one webhook → 202, then PROCESSED ~30s later
 npm run test:duplicates   # 20 identical webhooks at once + 3 late retries → exactly one transaction
