@@ -9,5 +9,4 @@
         "healthCheckPath": "/",
         "restartPolicyType": "ON_FAILURE" 
     }
-
 }

@@ -1,12 +1,12 @@
 import process from "node:process";
 import { BASE_URL, fail, makeTxn, pass, postWebhook } from "./lib";
-import { number } from "zod";
 
 const BACKGROUND = Number(process.env.BACKGROUND ?? 50);
 const TOTAL = Number(process.env.TOTAL ?? 200);
 const CONCURRENCY = Number(process.env.CONCURRENCY ?? 20);
 
-const pct = (sorted: number[], p: number) => sorted[Math.max(0), Math.ceil((p / 100) * sorted.length) - 1];
+const pct = (sorted: number[], p: number) =>
+  sorted[Math.max(0, Math.ceil((p / 100) * sorted.length) - 1)];
 
 async function main() {
     console.log(`Target: ${BASE_URL}`);
