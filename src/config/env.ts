@@ -10,6 +10,8 @@ const schema = z.object({
   WORKER_CONCURRENCY: z.coerce.number().default(10),
   LEASE_MS: z.coerce.number().default(60_000),
   MAX_ATTEMPTS: z.coerce.number().default(5),
+  RETRY_BASE_MS: z.coerce.number().default(5_000),
+  SIMULATED_FAILURE_RATE: z.coerce.number().min(0).max(1).default(0),
 });
 
 const parsed = schema.safeParse(process.env);

@@ -17,7 +17,7 @@ model Transaction {
     // The processor's id is the idempotency key + primary key
     transactionId String @id @map("transaction_id") @db.VarChar(128)
     sourceAccount String @map("source_account") @db.VarChar(128)
-    destinationAccoun String @map("destination_account") @db.VarChar(128)
+    destinationAccount String @map("destination_account") @db.VarChar(128)
     amount Decimal @db.Decimal(19, 4)
     currency String @db.VarChar(3)
     status TransactionStatus @default(PROCESSING)
