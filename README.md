@@ -145,14 +145,16 @@ npm run test:load         # 50 slow jobs queued, then 200 webhooks at concurrenc
 ```
  
 `test:load` accepts `BACKGROUND`, `TOTAL` and `CONCURRENCY` environment variables.
+
+
  
 ### Results against the live deployment
  
 | Test | Result |
 |---|---|
-| Single transaction | `202` in __ ms; processed __ s after receipt |
-| Duplicate prevention | 20 concurrent + 3 late deliveries → all `202`, 1 created, processed once |
-| Performance under load | p50 __ ms · p95 __ ms · p99 __ ms (client-side, from Delhi); server-side __ ms |
+| Single transaction | PASS: webhooks acknowledged with 202 in 292ms. Waiting for processing.............. . ✅ PASS: processed 30.8s after receipt |
+| Duplicate prevention | ✅ PASS: 20 concurrent deliveries: all 202, exactly 1 created the transaction. ✅ PASS: 3 late retries: all 202 and flagged as duplicate . Waiting for processing............... . ✅ PASS: txn_dup_1792587768571_448jr5 processed once (a single server log) |
+| Performance under load | Target: https://transaction-service-u9fq.onrender.com . Queued 50 background transactions (worker is now busy). 200 requests, concurrency 20, 157 req/s . p50 109ms : p95 203ms : p99 257ms : max 262ms . ✅ PASS: all 202, p99 under 500ms while background jobs were running|
  
 Client-side latency includes the network round trip from the test machine. Server-side response times appear in the request logs.
  
